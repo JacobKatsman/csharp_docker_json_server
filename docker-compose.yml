@@ -1,0 +1,13 @@
+services:
+  myapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: myapp:net8
+    container_name: myapp
+    ports:
+      - "8082:8080"          # снаружи 8082 → внутри 8080
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8080
+    restart: unless-stopped
